@@ -1,0 +1,837 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly - Hotel & Resort Booking</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Raleway:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="icon-hotel" viewBox="0 0 24 24"><path d="M4 21V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v16"/><path d="M17 9h1a2 2 0 0 1 2 2v10"/><path d="M3 21h18"/><path d="M8 7h1"/><path d="M12 7h1"/><path d="M8 11h1"/><path d="M12 11h1"/><path d="M9 21v-5h3v5"/></symbol>
+  <symbol id="icon-waves" viewBox="0 0 24 24"><path d="M2 8c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/><path d="M2 14c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/><path d="M2 20c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/></symbol>
+  <symbol id="icon-leaf" viewBox="0 0 24 24"><path d="M5 21c.8-7.2 5-13 14-16 1 8-3 14-10 14-2 0-3.4-.7-4-2"/><path d="M9 15c2-1 4-3 6-6"/></symbol>
+  <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3z"/><path d="M19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16z"/><path d="M5 2l.7 2.3L8 5l-2.3.7L5 8l-.7-2.3L2 5l2.3-.7L5 2z"/></symbol>
+  <symbol id="icon-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v4a2 2 0 0 0 2 2h2v-8H6a2 2 0 0 0-2 2z"/><path d="M20 13v4a2 2 0 0 1-2 2h-2v-8h2a2 2 0 0 1 2 2z"/><path d="M16 19c0 1.1-1.8 2-4 2"/></symbol>
+  <symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/></symbol>
+  <symbol id="icon-calendar-check" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/><path d="M8 16l2 2 5-5"/></symbol>
+  <symbol id="icon-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="icon-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></symbol>
+  <symbol id="icon-briefcase" viewBox="0 0 24 24"><path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1"/><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 12h18"/><path d="M12 12v2"/></symbol>
+  <symbol id="icon-ticket-check" viewBox="0 0 24 24"><path d="M3 9a3 3 0 0 0 0 6v3a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3a3 3 0 0 0 0-6V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/><path d="M9 13l2 2 4-5"/></symbol>
+  <symbol id="icon-plus-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8"/><path d="M8 12h8"/></symbol>
+  <symbol id="icon-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.3 7-12a7 7 0 1 0-14 0c0 6.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z"/></symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="icon-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4"/><path d="M8.6 13.5l6.8 4"/></symbol>
+  <symbol id="icon-network" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><path d="M10 7h4"/><path d="M17 10v4"/><path d="M10 10l4 4"/></symbol>
+  <symbol id="icon-message" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H6l-4 3 1.5-5A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="icon-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4z"/></symbol>
+  <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></symbol>
+  <symbol id="icon-x" viewBox="0 0 24 24"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></symbol>
+</svg>
+
+<!-- CURSOR -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-edu-wrapper">
+    <svg class="loader-edu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="eduGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0d9488" />
+          <stop offset="50%" stop-color="#f2c14e" />
+          <stop offset="100%" stop-color="#ffcc00" />
+        </linearGradient>
+        <linearGradient id="eduGradFill" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0d9488" stop-opacity="0.1" />
+          <stop offset="50%" stop-color="#f2c14e" stop-opacity="0.1" />
+          <stop offset="100%" stop-color="#ffcc00" stop-opacity="0.1" />
+        </linearGradient>
+      </defs>
+      <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" stroke="url(#eduGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="url(#eduGradFill)"/>
+      <path d="M2 10l10-5 10 5-10 5z" stroke="url(#eduGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="url(#eduGradFill)"/>
+      <path d="M22 10v6" stroke="url(#eduGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="ld-logo">
+    <img src="logo_gold.webp" alt="Stackly Logo" class="loader-logo-img">
+  </div>
+  <div class="ld-bar-bg"><div class="ld-bar"></div></div>
+  <div class="ld-words">Loading your escape...</div>
+</div>
+
+<!-- SCROLL TOP -->
+<div id="scrolltop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><svg class="icon-svg"><use href="#icon-arrow-up"></use></svg></div>
+
+
+
+<!-- NAVBAR -->
+<nav id="navbar" >
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo_gold.webp" alt="Stackly Logo" class="nav-logo-img">
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-login" onclick="location.href='login.html'">Login</button>
+      <button class="btn-register" onclick="location.href='signup.html'">Book Now</button>
+    </div>
+    <div class="hamburger" id="ham">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mob-menu">
+  <span id="mob-close" aria-label="Close menu"><svg class="icon-svg"><use href="#icon-x"></use></svg></span>
+  <div class="mob-menu-logo">
+    <img src="logo_gold.webp" alt="Stackly Logo" style="height: 48px; object-fit: contain;">
+  </div>
+  <div class="mob-menu-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="features.html">Features</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="mob-menu-actions">
+    <a href="login.html" class="mob-menu-btn secondary">Login</a>
+    <a href="signup.html" class="mob-menu-btn">Book Now</a>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ============================================================ -->
+<!-- HERO -->
+<!-- ============================================================ -->
+<section id="hero">
+  <div class="hero-video-container">
+    <div class="video-overlay"></div>
+    <video class="hero-video active" src="videos/resort_hotel_beach_video.mp4" autoplay loop muted playsinline preload="auto"></video>
+  </div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge rv" id="hero-badge"><span class="badge-pulse"></span><span class="badge-text">Curated Hotel & Resort Stays</span></div>
+        <h1 class="rv d1" id="hero-title">Hotel & Resort<br><span class="hl">Booking</span><br>Made Easy</h1>
+        <p class="hero-sub rv d2" id="hero-sub">Discover luxury hotels, beach resorts, nature retreats, and eco stays with verified amenities, flexible bookings, and guest-first support.</p>
+        <div class="hero-btns rv d3">
+          <a href="404.html" class="hbtn-main">Explore Stays</a>
+          <a href="404.html" class="hbtn-ghost"><span class="play-wrap">▶</span> Watch Resort Tour</a>
+        </div>
+        <div class="hero-stats rv d4">
+          <div>
+            <div class="hstat-num">180<em>+</em></div>
+            <div class="hstat-label">Hotels & Resorts</div>
+          </div>
+          <div>
+            <div class="hstat-num">95<em>K</em></div>
+            <div class="hstat-label">Happy Guests</div>
+          </div>
+          <div>
+            <div class="hstat-num">42<em>+</em></div>
+            <div class="hstat-label">Destinations</div>
+          </div>
+        </div>
+        <form class="booking-search rv d4" action="404.html">
+          <label>
+            <span>Destination</span>
+            <input type="text" value="Goa Beach Resort">
+          </label>
+          <label>
+            <span>Check In</span>
+            <input type="date" value="2026-08-15">
+          </label>
+          <label>
+            <span>Check Out</span>
+            <input type="date" value="2026-08-18">
+          </label>
+          <label>
+            <span>Guests</span>
+            <select>
+              <option>2 Adults</option>
+              <option>Family of 4</option>
+              <option>Group Booking</option>
+            </select>
+          </label>
+          <button type="submit">Search Rooms</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================ -->
+<!-- FEATURES / WELCOME -->
+<!-- ============================================================ -->
+<section id="features">
+  <div class="container">
+    <div class="features-intro">
+      <div class="fi-img-wrap rv-l">
+        <img src="downloaded_images/resort-hero.webp" alt="Welcome to Stackly Resorts">
+        <div class="fi-badge">
+          <div class="num">15+</div>
+          <div class="lbl">Years of Excellence</div>
+        </div>
+      </div>
+      <div class="rv-r">
+        <div class="sec-eyebrow">Welcome to Stackly Resorts</div>
+        <h2 class="sec-title">Memorable Stays<br>for <span>Every Guest</span></h2>
+        <p style="color:var(--gray);font-size:.9rem;line-height:1.75;margin-bottom:8px;">Stackly is designed for effortless hotel and resort booking, from luxury city hotels to beach resorts, eco nature retreats, spa escapes, and family-friendly stays.</p>
+        <p style="color:var(--gray);font-size:.9rem;line-height:1.75;">Compare rooms, amenities, meal plans, resort experiences, guest reviews, and seasonal offers before reserving the stay that fits your trip.</p>
+        <ul class="fi-list">
+          <li><span class="fi-check">✓</span>180+ verified hotels, beach resorts, eco lodges, villas, and boutique stays</li>
+          <li><span class="fi-check">✓</span>Concierge support for room selection, upgrades, transfers, and special requests</li>
+          <li><span class="fi-check">✓</span>Transparent nightly rates, inclusions, cancellation policies, and guest ratings</li>
+          <li><span class="fi-check">✓</span>Flexible booking, check-in guidance, and itinerary add-ons for every stay</li>
+        </ul>
+        <a href="404.html" class="hbtn-main" style="display:inline-flex;width:fit-content;">Explore All Stays</a>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat-card rv d1">
+        <div class="feat-img">
+          <img src="downloaded_images/luxury-hotel.webp" alt="Browse Verified Stays">
+          <div class="feat-badge" aria-label="Hotel stays"><svg class="icon-svg"><use href="#icon-hotel"></use></svg></div>
+        </div>
+        <h3>Browse Verified Stays</h3>
+        <p>Explore verified hotels, suites, villas, beach resorts, and nature stays with clear pricing, amenities, photos, and guest-ready details.</p>
+      </div>
+
+      <div class="feat-card rv d2">
+        <div class="feat-img">
+          <img src="downloaded_images/beach-resort.webp" alt="Reserve Beach Resorts">
+          <div class="feat-badge" aria-label="Beach resorts"><svg class="icon-svg"><use href="#icon-waves"></use></svg></div>
+        </div>
+        <h3>Reserve Beach Resorts</h3>
+        <p>Book ocean-view rooms, beachfront villas, cabanas, airport transfers, and resort experiences with flexible dates and guest support.</p>
+      </div>
+
+      <div class="feat-card rv d3">
+        <div class="feat-img">
+          <img src="downloaded_images/mountain-resort.webp" alt="Eco Nature Retreats">
+          <div class="feat-badge" aria-label="Nature retreats"><svg class="icon-svg"><use href="#icon-leaf"></use></svg></div>
+        </div>
+        <h3>Eco Nature Retreats</h3>
+        <p>Find quiet forest lodges, mountain resorts, wellness retreats, and sustainable stays surrounded by calm natural landscapes.</p>
+      </div>
+
+      <div class="feat-card rv d1">
+        <div class="feat-img">
+          <img src="downloaded_images/hotel-suite.webp" alt="AI-Powered Stay Matching">
+          <div class="feat-badge" aria-label="Smart matching"><svg class="icon-svg"><use href="#icon-sparkles"></use></svg></div>
+        </div>
+        <h3>AI-Powered Stay Matching</h3>
+        <p>Our recommendation system matches stays by budget, destination, amenities, meal plan, room type, occasion, and travel style.</p>
+      </div>
+
+      <div class="feat-card rv d2">
+        <div class="feat-img">
+          <img src="downloaded_images/spa-resort.webp" alt="Concierge Booking Support">
+          <div class="feat-badge" aria-label="Concierge support"><svg class="icon-svg"><use href="#icon-headset"></use></svg></div>
+        </div>
+        <h3>Concierge Booking Support</h3>
+        <p>Get help from booking specialists for upgrades, honeymoon setups, family rooms, accessible rooms, transfers, and itinerary planning.</p>
+      </div>
+
+      <div class="feat-card rv d3">
+        <div class="feat-img">
+          <img src="downloaded_images/resort-pool.webp" alt="Verified Hotels and Resorts">
+          <div class="feat-badge" aria-label="Verified stays"><svg class="icon-svg"><use href="#icon-check-circle"></use></svg></div>
+        </div>
+        <h3>Verified Hotels & Resorts</h3>
+        <p>Every stay is checked for amenities, room quality, location, policies, guest comfort, and availability before it appears as a featured option.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================ -->
+<!-- FEATURED STAYS -->
+<!-- ============================================================ -->
+<section id="properties">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-eyebrow">Featured Stays</div>
+      <h2 class="sec-title">Explore Our <span>Top Hotels & Resorts</span></h2>
+      <p class="sec-desc">Handpicked stays for beach holidays, luxury weekends, wellness escapes, family vacations, and nature-first retreats.</p>
+    </div>
+    <div class="properties-tabs rv">
+      <button class="ctab active" data-filter="All">All Stays</button>
+      <button class="ctab" data-filter="Beach Resort">Beach Resort</button>
+      <button class="ctab" data-filter="Luxury Hotel">Luxury Hotel</button>
+      <button class="ctab" data-filter="Eco Nature">Eco Nature</button>
+      <button class="ctab" data-filter="Business Hotel">Business Hotel</button>
+      <button class="ctab" data-filter="Luxury Resort">Luxury Resort</button>
+    </div>
+    <div class="properties-grid">
+      <div class="property-card rv d1" data-category="Beach Resort">
+        <div class="cc-img">
+          <img src="downloaded_images/beach-resort.webp" alt="Azure Palm Beach Resort">
+          <span class="cc-label">Beach Resort</span>
+          <span class="cc-price">$220/night</span>
+          <div class="cc-overlay"></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-title">Azure Palm Beach Resort - Ocean View Escape</div>
+          <div class="cc-meta"><span>3 pools</span><span>2 guests</span><span>Breakfast</span></div>
+          <div class="cc-foot"><div class="cc-tutor"><img src="downloaded_images/a1.webp" alt=""><span>Goa, India</span></div><div class="cc-rating"><span class="cc-stars">★</span>4.9</div></div>
+          <button class="cc-btn" type="button" onclick="location.href='404.html'">Book Stay</button>
+        </div>
+      </div>
+      <div class="property-card rv d2" data-category="Luxury Hotel">
+        <div class="cc-img">
+          <img src="downloaded_images/luxury-hotel.webp" alt="Grand Aurelia Luxury Hotel">
+          <span class="cc-label">Luxury Hotel</span>
+          <span class="cc-price">$310/night</span>
+          <div class="cc-overlay"></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-title">Grand Aurelia Luxury Hotel - Skyline Suite</div>
+          <div class="cc-meta"><span>King suite</span><span>Spa access</span><span>City view</span></div>
+          <div class="cc-foot"><div class="cc-tutor"><img src="downloaded_images/a2.webp" alt=""><span>Mumbai, India</span></div><div class="cc-rating"><span class="cc-stars">★</span>4.8</div></div>
+          <button class="cc-btn" type="button" onclick="location.href='404.html'">Book Stay</button>
+        </div>
+      </div>
+      <div class="property-card rv d3" data-category="Eco Nature">
+        <div class="cc-img">
+          <img src="downloaded_images/mountain-resort.webp" alt="Mist Valley Eco Nature Resort">
+          <span class="cc-label">Eco Nature</span>
+          <span class="cc-price">$180/night</span>
+          <div class="cc-overlay"></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-title">Mist Valley Eco Nature Resort - Lakeside Cabin</div>
+          <div class="cc-meta"><span>Nature trail</span><span>2 guests</span><span>Eco meals</span></div>
+          <div class="cc-foot"><div class="cc-tutor"><img src="downloaded_images/w5.webp" alt=""><span>Munnar, India</span></div><div class="cc-rating"><span class="cc-stars">★</span>4.9</div></div>
+          <button class="cc-btn" type="button" onclick="location.href='404.html'">Book Stay</button>
+        </div>
+      </div>
+      <div class="property-card rv d1" data-category="Luxury Resort">
+        <div class="cc-img">
+          <img src="downloaded_images/resort-hero.webp" alt="Coconut Cove Luxury Resort">
+          <span class="cc-label">Luxury Resort</span>
+          <span class="cc-price">$390/night</span>
+          <div class="cc-overlay"></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-title">Coconut Cove Luxury Resort - Private Pool Villa</div>
+          <div class="cc-meta"><span>Pool villa</span><span>4 guests</span><span>Sea deck</span></div>
+          <div class="cc-foot"><div class="cc-tutor"><img src="downloaded_images/a3.webp" alt=""><span>Maldives</span></div><div class="cc-rating"><span class="cc-stars">★</span>4.8</div></div>
+          <button class="cc-btn" type="button" onclick="location.href='404.html'">Book Stay</button>
+        </div>
+      </div>
+      <div class="property-card rv d2" data-category="Business Hotel">
+        <div class="cc-img">
+          <img src="downloaded_images/hotel-suite.webp" alt="Metro Nest Business Hotel">
+          <span class="cc-label">Business Hotel</span>
+          <span class="cc-price">$140/night</span>
+          <div class="cc-overlay"></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-title">Metro Nest Business Hotel - Executive Stay</div>
+          <div class="cc-meta"><span>Work desk</span><span>Wi-Fi</span><span>Airport pickup</span></div>
+          <div class="cc-foot"><div class="cc-tutor"><img src="downloaded_images/w3.webp" alt=""><span>Bengaluru, India</span></div><div class="cc-rating"><span class="cc-stars">★</span>4.7</div></div>
+          <button class="cc-btn" type="button" onclick="location.href='404.html'">Book Stay</button>
+        </div>
+      </div>
+      <div class="property-card rv d3" data-category="Luxury Resort">
+        <div class="cc-img">
+          <img src="downloaded_images/resort-pool.webp" alt="Serene Lagoon Spa Resort">
+          <span class="cc-label">Luxury Resort</span>
+          <span class="cc-price">$260/night</span>
+          <div class="cc-overlay"></div>
+        </div>
+        <div class="cc-body">
+          <div class="cc-title">Serene Lagoon Spa Resort - Wellness Weekend</div>
+          <div class="cc-meta"><span>Spa credit</span><span>2 guests</span><span>Half board</span></div>
+          <div class="cc-foot"><div class="cc-tutor"><img src="downloaded_images/a4.webp" alt=""><span>Kerala, India</span></div><div class="cc-rating"><span class="cc-stars">★</span>4.9</div></div>
+          <button class="cc-btn" type="button" onclick="location.href='404.html'">Book Stay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================ -->
+<!-- STATS BAND -->
+<!-- ============================================================ -->
+<section id="stats">
+  <div class="container"><div class="stats-inner">
+    <div class="stat-block rv d1"><div class="ico"><svg class="icon-svg"><use href="#icon-hotel"></use></svg></div><div class="num" data-target="180">0</div><div class="lab">Hotel Partners</div></div>
+    <div class="stat-block rv d2"><div class="ico"><svg class="icon-svg"><use href="#icon-calendar-check"></use></svg></div><div class="num" data-target="12456">0</div><div class="lab">Bookings Completed</div></div>
+    <div class="stat-block rv d3"><div class="ico"><svg class="icon-svg"><use href="#icon-users"></use></svg></div><div class="num" data-target="95000">0</div><div class="lab">Happy Guests</div></div>
+    <div class="stat-block rv d4"><div class="ico"><svg class="icon-svg"><use href="#icon-smile"></use></svg></div><div class="num" data-target="98">0</div><div class="lab">% Guest Satisfaction</div></div>
+  </div></div>
+</section>
+<!-- ============================================================ -->
+<!-- SERVICES -->
+<!-- ============================================================ -->
+<section id="services">
+  <div class="container"><div class="services-inner"><div>
+    <div class="sec-eyebrow rv">Our Services</div>
+    <h2 class="sec-title rv">Complete<br><span>Hotel Booking Services</span></h2>
+    <p style="color:var(--gray);font-size:.9rem;line-height:1.75;margin-bottom:32px;" class="rv">From stay discovery and room selection to transfers, meal plans, activities, and booking support, we make every reservation feel effortless.</p>
+    <div class="svc-grid">
+      <div class="svc-item rv d1"><div class="svc-ico"><svg class="icon-svg"><use href="#icon-briefcase"></use></svg></div><div class="svc-body"><h4>Corporate Stay Planning</h4><p>Business hotel selection, group room blocks, meeting spaces, and invoice-friendly bookings.</p></div></div>
+      <div class="svc-item rv d2"><div class="svc-ico"><svg class="icon-svg"><use href="#icon-headset"></use></svg></div><div class="svc-body"><h4>1-on-1 Concierge Guidance</h4><p>Private help for comparing stays, choosing rooms, planning upgrades, and confirming special requests.</p></div></div>
+      <div class="svc-item rv d3"><div class="svc-ico"><svg class="icon-svg"><use href="#icon-ticket-check"></use></svg></div><div class="svc-body"><h4>Booking Support</h4><p>Voucher, payment, cancellation, guest ID, and confirmation support from inquiry to check-in.</p></div></div>
+      <div class="svc-item rv d1"><div class="svc-ico"><svg class="icon-svg"><use href="#icon-sparkles"></use></svg></div><div class="svc-body"><h4>Smart Stay Matching</h4><p>Get matched with hotels and resorts based on budget, destination, amenities, views, and trip type.</p></div></div>
+      <div class="svc-item rv d2"><div class="svc-ico"><svg class="icon-svg"><use href="#icon-plus-circle"></use></svg></div><div class="svc-body"><h4>Travel Add-ons</h4><p>Airport transfers, dining plans, spa slots, guided tours, and celebration packages.</p></div></div>
+      <div class="svc-item rv d3"><div class="svc-ico"><svg class="icon-svg"><use href="#icon-map-pin"></use></svg></div><div class="svc-body"><h4>Destination Support</h4><p>Local attraction tips, seasonal recommendations, weather-aware planning, and resort-area guidance.</p></div></div>
+    </div></div><div class="svc-img-side rv-r"><img src="downloaded_images/spa-resort.webp" alt="Hotel booking services"></div>
+  </div></div>
+</section>
+<!-- ============================================================ -->
+<!-- CTA BAND -->
+<!-- ============================================================ -->
+<section id="cta-band">
+  <div class="container"><div class="cta-inner"><div class="cta-text">
+    <div class="sec-eyebrow rv">Plan Your Next Escape</div>
+    <h2 class="sec-title rv">Find, Compare, And Book<br>Your Next <span>Resort Stay</span></h2>
+    <p class="sec-desc rv">Choose a beach resort, luxury hotel, or nature retreat and let Stackly simplify the details from search to check-in.</p>
+    <div class="rv" style="display:flex;gap:14px;flex-wrap:wrap;"><a href="404.html" class="hbtn-main">Start Trip Shortlist</a><a href="404.html" class="hbtn-ghost">Contact Us</a></div>
+  </div><div class="cta-img rv-r"><img src="downloaded_images/beach-resort.webp" alt="Resort bookings"></div></div></div>
+</section>
+<!-- ============================================================ -->
+<!-- EXPERIENCES -->
+<!-- ============================================================ -->
+<section id="events">
+  <div class="container">
+    <div class="sec-head rv"><div class="sec-eyebrow">Travel & Stay Experiences</div><h2 class="sec-title">Discover Upcoming <span>Resort Experiences</span></h2><p class="sec-desc">Reserve seasonal escapes, tasting weekends, wellness retreats, nature trails, and beachside events hosted by our partner resorts.</p></div>
+    <div class="events-list">
+      <div class="event-card rv d1"><div class="ev-date"><div class="ev-day">06</div><div class="ev-mon">May</div></div><div class="ev-body"><span class="ev-tag">Beach Weekend</span><h4>Luxury Beach Resort Weekend</h4><p>Enjoy ocean-view rooms, poolside dining, sunset activities, and concierge-led resort tours.</p><div class="ev-meta"><span>Goa, India</span><span>08:00 AM - 05:00 PM</span><span>150 Guests</span></div></div><div class="ev-action"><button class="ev-reg" type="button" onclick="location.href='404.html'">Reserve</button></div></div>
+      <div class="event-card rv d2"><div class="ev-date"><div class="ev-day">20</div><div class="ev-mon">Jun</div></div><div class="ev-body"><span class="ev-tag">Wellness Retreat</span><h4>First-Time Resort Escape Planner</h4><p>Learn how to choose rooms, packages, transfers, meal plans, and cancellation options for a smoother trip.</p><div class="ev-meta"><span>Coimbatore, India</span><span>04:00 PM - 05:30 PM</span><span>80 Guests</span></div></div><div class="ev-action"><button class="ev-reg" type="button" onclick="location.href='404.html'">Reserve</button></div></div>
+      <div class="event-card rv d3"><div class="ev-date"><div class="ev-day">30</div><div class="ev-mon">Jul</div></div><div class="ev-body"><span class="ev-tag">Luxury Hotel Showcase</span><h4>Luxury Hotel & Smart Stay Showcase 2026</h4><p>Explore smart check-in, curated suites, digital concierge options, and premium hotel experiences.</p><div class="ev-meta"><span>Chennai, India</span><span>01:00 PM - 06:30 PM</span><span>300 Guests</span></div></div><div class="ev-action"><button class="ev-reg" type="button" onclick="location.href='404.html'">Reserve</button></div></div>
+      <div class="event-card rv d1"><div class="ev-date"><div class="ev-day">06</div><div class="ev-mon">Aug</div></div><div class="ev-body"><span class="ev-tag">Nature Trail</span><h4>Guided Eco Resort Nature Trail</h4><p>Walk through forest paths, lakeside decks, wellness spaces, and eco-friendly cottages with a resort guide.</p><div class="ev-meta"><span>Munnar, India</span><span>09:30 AM - 04:30 PM</span><span>50 Guests</span></div></div><div class="ev-action"><button class="ev-reg" type="button" onclick="location.href='404.html'">Reserve</button></div></div>
+      <div class="event-card rv d2"><div class="ev-date"><div class="ev-day">27</div><div class="ev-mon">Sep</div></div><div class="ev-body"><span class="ev-tag">Hospitality Summit</span><h4>Resort Dining & Destination Trends</h4><p>Meet chefs, hosts, and travel experts to discover seasonal packages, destination tips, and guest favorites.</p><div class="ev-meta"><span>Bengaluru, India</span><span>10:00 AM - 06:00 PM</span><span>120 Guests</span></div></div><div class="ev-action"><button class="ev-reg" type="button" onclick="location.href='404.html'">Reserve</button></div></div>
+      <div class="event-card rv d3"><div class="ev-date"><div class="ev-day">15</div><div class="ev-mon">Oct</div></div><div class="ev-body"><span class="ev-tag">Holiday Booking Fair</span><h4>Annual Hotel & Resort Booking Fair</h4><p>Meet resort partners, travel planners, transfer teams, and experience hosts under one roof.</p><div class="ev-meta"><span>Mumbai, India</span><span>12:00 PM - 06:00 PM</span><span>500 Guests</span></div></div><div class="ev-action"><button class="ev-reg" type="button" onclick="location.href='404.html'">Reserve</button></div></div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================ -->
+<!-- RESORT SPECIALISTS -->
+<!-- ============================================================ -->
+<section id="admins" style="background:var(--light)">
+  <div class="container">
+    <div class="sec-head rv"><div class="sec-eyebrow">Our Specialists</div><h2 class="sec-title">Meet Our <span>Resort Concierge Team</span></h2><p class="sec-desc">Our stay specialists help guests choose the right hotel, resort, room type, meal plan, and experience package.</p></div>
+    <div class="admins-grid">
+      <div class="admin-card rv d1"><div class="tc-img"><img src="downloaded_images/w7.webp" alt="Alexa Turner"><div class="tc-overlay"><div class="tc-socials"><a href="404.html" class="tc-soc" aria-label="Share profile"><svg class="icon-svg"><use href="#icon-share"></use></svg></a><a href="404.html" class="tc-soc" aria-label="Network profile"><svg class="icon-svg"><use href="#icon-network"></use></svg></a><a href="404.html" class="tc-soc" aria-label="Message profile"><svg class="icon-svg"><use href="#icon-message"></use></svg></a></div></div></div><div class="tc-info"><h4>Alexa Turner</h4><p>Beach Resort Concierge</p><div class="tc-stats"><div class="tcs"><span>42</span><small>Resorts</small></div><div class="tcs"><span>18K</span><small>Guests</small></div><div class="tcs"><span>4.9★</span><small>Rating</small></div></div></div></div>
+      <div class="admin-card rv d2"><div class="tc-img"><img src="downloaded_images/a3.webp" alt="Sarah Chen"><div class="tc-overlay"><div class="tc-socials"><a href="404.html" class="tc-soc" aria-label="Share profile"><svg class="icon-svg"><use href="#icon-share"></use></svg></a><a href="404.html" class="tc-soc" aria-label="Network profile"><svg class="icon-svg"><use href="#icon-network"></use></svg></a><a href="404.html" class="tc-soc" aria-label="Website profile"><svg class="icon-svg"><use href="#icon-globe"></use></svg></a></div></div></div><div class="tc-info"><h4>Sarah Chen</h4><p>Luxury Hotel Specialist</p><div class="tc-stats"><div class="tcs"><span>28</span><small>Hotels</small></div><div class="tcs"><span>14K</span><small>Guests</small></div><div class="tcs"><span>4.8★</span><small>Rating</small></div></div></div></div>
+      <div class="admin-card rv d3"><div class="tc-img"><img src="downloaded_images/w3.webp" alt="James Kim"><div class="tc-overlay"><div class="tc-socials"><a href="404.html" class="tc-soc" aria-label="Share profile"><svg class="icon-svg"><use href="#icon-share"></use></svg></a><a href="404.html" class="tc-soc" aria-label="Network profile"><svg class="icon-svg"><use href="#icon-network"></use></svg></a><a href="404.html" class="tc-soc" aria-label="Message profile"><svg class="icon-svg"><use href="#icon-message"></use></svg></a></div></div></div><div class="tc-info"><h4>James Kim</h4><p>Eco Retreat Planner</p><div class="tc-stats"><div class="tcs"><span>35</span><small>Retreats</small></div><div class="tcs"><span>12K</span><small>Guests</small></div><div class="tcs"><span>4.9★</span><small>Rating</small></div></div></div></div>
+      <div class="admin-card rv d4"><div class="tc-img"><img src="downloaded_images/unsplash_1472099645785-5658abf4ff4e_w400_q70.webp" alt="Robert Walsh"><div class="tc-overlay"><div class="tc-socials"><a href="404.html" class="tc-soc" aria-label="Share profile"><svg class="icon-svg"><use href="#icon-share"></use></svg></a><a href="404.html" class="tc-soc" aria-label="Network profile"><svg class="icon-svg"><use href="#icon-network"></use></svg></a><a href="404.html" class="tc-soc" aria-label="Video profile"><svg class="icon-svg"><use href="#icon-play"></use></svg></a></div></div></div><div class="tc-info"><h4>Robert Walsh</h4><p>Group Booking Manager</p><div class="tc-stats"><div class="tcs"><span>19</span><small>Groups</small></div><div class="tcs"><span>9K</span><small>Guests</small></div><div class="tcs"><span>4.9★</span><small>Rating</small></div></div></div></div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================ -->
+<!-- TESTIMONIALS -->
+<!-- ============================================================ -->
+<section id="testimonials"><div class="container"><div class="sec-head rv"><div class="sec-eyebrow">Testimonials</div><h2 class="sec-title">What Our <span>Guests Say</span></h2><p class="sec-desc">Travelers use Stackly to compare stays, book confidently, and arrive with every detail already organized.</p></div><div class="testi-grid">
+  <div class="testi-card rv d1"><div class="tq">"</div><div class="testi-stars">★★★★★</div><p class="testi-text">Stackly helped us compare beach resorts clearly, choose the right room, and add airport transfers before check-in. The trip felt calm from day one.</p><div class="testi-author"><img src="downloaded_images/unsplash_1494790108377-be9c29b29330_w80_q70.webp" alt=""><div><div class="ta-name">Riya Menon</div><div class="ta-role">Guest, Bangalore</div></div></div></div>
+  <div class="testi-card rv d2"><div class="tq">"</div><div class="testi-stars">★★★★★</div><p class="testi-text">The stay matching narrowed our options to resorts that fit our budget, spa needs, and food preferences. We saved hours of searching.</p><div class="testi-author"><img src="downloaded_images/unsplash_1580489944761-15a19d654956_w60_q70.webp" alt=""><div><div class="ta-name">Arjun Rao</div><div class="ta-role">Family Traveler, Mumbai</div></div></div></div>
+  <div class="testi-card rv d3"><div class="tq">"</div><div class="testi-stars">★★★★★</div><p class="testi-text">The dashboard kept our booking voucher, check-in time, room upgrade, and activity reminders in one place. Exactly what a holiday needs.</p><div class="testi-author"><img src="downloaded_images/w5.webp" alt=""><div><div class="ta-name">Meera Iyer</div><div class="ta-role">Resort Guest, Chennai</div></div></div></div>
+</div></div></section>
+<!-- ============================================================ -->
+<!-- FAQ -->
+<!-- ============================================================ -->
+<section id="faq" style="background:#fff"><div class="container"><div class="faq-inner"><div><div class="sec-eyebrow rv">FAQ</div><h2 class="sec-title rv">Frequently Asked <span>Questions</span></h2><p style="color:var(--gray);font-size:.9rem;line-height:1.75;margin-bottom:28px;" class="rv">Everything you need to know about hotel booking, resort stays, payments, cancellations, and guest support.</p><div class="faq-list">
+  <div class="faq-item rv d1 open"><div class="faq-q">What does Stackly Resorts help with?<span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner">Stackly helps guests discover verified hotels and resorts, compare amenities, reserve rooms, add experiences, and manage booking details from one dashboard.</div></div></div>
+  <div class="faq-item rv d2"><div class="faq-q">Are hotels and resorts verified?<span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner">Featured stays are checked for location, room quality, amenities, policies, availability, guest comfort, and pricing clarity before promotion.</div></div></div>
+  <div class="faq-item rv d3"><div class="faq-q">Can I add transfers or activities?<span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner">Yes. You can add airport pickup, dining plans, spa slots, guided tours, celebration setups, and other resort experiences when available.</div></div></div>
+  <div class="faq-item rv d1"><div class="faq-q">Do you help with booking documents?<span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner">Yes. Your dashboard keeps booking vouchers, payment updates, guest ID reminders, cancellation terms, and check-in instructions organized.</div></div></div>
+  <div class="faq-item rv d2"><div class="faq-q">Can hotels manage bookings?<span class="faq-icon">+</span></div><div class="faq-a"><div class="faq-a-inner">Partner hotels can manage rooms, booking requests, guest notes, schedules, and follow-ups from the dashboard.</div></div></div>
+</div></div><div class="faq-img rv-r"><img src="downloaded_images/resort-pool.webp" alt="Hotel booking FAQ"></div></div></div></section>
+<!-- ============================================================ -->
+<!-- BLOG -->
+<!-- ============================================================ -->
+<section id="blog"><div class="container"><div class="sec-head rv"><div class="sec-eyebrow">Latest News</div><h2 class="sec-title">Travel Tips & <span>Resort Guides</span></h2><p class="sec-desc">Stay inspired with hotel booking advice, destination ideas, seasonal resort offers, and smarter travel planning tips.</p></div><div class="blog-grid">
+  <div class="blog-card rv d1"><div class="bc-img"><img src="downloaded_images/resort-hero.webp" alt="Beach resort guide"><div class="bc-date-badge">25 Jan</div></div><div class="bc-body"><div class="bc-cat">Booking Tips</div><div class="bc-title">How AI Helps Guests Find Better Resort Stays</div><div class="bc-excerpt">Smart filters can compare amenities, location, room views, policies, and guest preferences so travelers shortlist stays faster.</div><div class="bc-foot"><div class="bc-author"><img src="downloaded_images/unsplash_1472099645785-5658abf4ff4e_w400_q70.webp" alt="">Admin</div><a href="404.html" class="bc-more">Read More</a></div></div></div>
+  <div class="blog-card rv d2"><div class="bc-img"><img src="downloaded_images/hotel-suite.webp" alt="Hotel suite guide"><div class="bc-date-badge">25 Jan</div></div><div class="bc-body"><div class="bc-cat">Luxury Hotels</div><div class="bc-title">Choosing the Right Room Type for Your Trip</div><div class="bc-excerpt">From family rooms to pool villas and executive suites, the right room can change the whole rhythm of a stay.</div><div class="bc-foot"><div class="bc-author"><img src="downloaded_images/w3.webp" alt="">Admin</div><a href="404.html" class="bc-more">Read More</a></div></div></div>
+  <div class="blog-card rv d3"><div class="bc-img"><img src="downloaded_images/mountain-resort.webp" alt="Eco resort guide"><div class="bc-date-badge">25 Jan</div></div><div class="bc-body"><div class="bc-cat">Eco Resorts</div><div class="bc-title">Planning a Nature Retreat Without Losing Comfort</div><div class="bc-excerpt">Eco resorts can combine quiet landscapes, local food, wellness experiences, and reliable guest services beautifully.</div><div class="bc-foot"><div class="bc-author"><img src="downloaded_images/unsplash_1494790108377-be9c29b29330_w80_q70.webp" alt="">Admin</div><a href="404.html" class="bc-more">Read More</a></div></div></div>
+</div></div></section>
+<!-- ============================================================ -->
+<!-- SUBSCRIBE -->
+<!-- ============================================================ -->
+<section id="subscribe"><div class="container"><div class="subscribe-inner"><div class="sec-eyebrow rv" style="justify-content:center;color:var(--orange)">Subscribe Now</div><h2 class="sec-title rv">Receive Weekly<br><span>Resort Deals</span></h2><p class="sec-desc rv">Get hotel offers, beach resort packages, eco retreat ideas, and travel planning tips straight to your inbox.</p><form class="sub-form rv" onsubmit="event.preventDefault(); validateSubscription();"><input type="email" placeholder="Enter your email address..." required oninput="handleEmailInput()"><button type="submit">Subscribe</button></form></div></div></section>
+<!-- FOOTER -->
+<!-- ============================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="fg-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:12px; display:inline-block;">
+          <img src="logo_gold.webp" alt="Stackly Logo" class="footer-logo-img">
+        </a>
+        <p>Stackly is a hotel and resort booking platform for verified stays, transparent rates, curated experiences, and smooth guest support from search to check-in.</p>
+        <div class="foot-soc">
+          <a class="fsoc" href="404.html">f</a>
+          <a class="fsoc" href="404.html">in</a>
+          <a class="fsoc" href="404.html">tw</a>
+          <a class="fsoc" href="404.html">yt</a>
+          <a class="fsoc" href="404.html">sk</a>
+        </div>
+      </div>
+      <div class="fg-col">
+        <h4>Stay Resources</h4>
+        <ul>
+          <li><a href="404.html">Hotels</a></li>
+          <li><a href="404.html">Events</a></li>
+          <li><a href="404.html">Resort Offers</a></li>
+          <li><a href="404.html">Travel Guides</a></li>
+          <li><a href="404.html">Partner Resorts</a></li>
+          <li><a href="404.html">Activities</a></li>
+        </ul>
+      </div>
+      <div class="fg-col">
+      <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="fg-col">
+      <h4>Contact Us</h4>
+         <ul class="footer-contact-list">
+          <li><span class="fc-icon">📍</span> <a href="404.html">Salem, Tamil Nadu, India</a></li>
+          <li><span class="fc-icon">📞</span> <a href="404.html">+91 98765 43210</a></li>
+          <li><span class="fc-icon">✉️</span> <a href="404.html">stackly@hotel bookingplatform.com</a></li>
+          <li><span class="fc-icon">🌐</span> <a href="404.html"> www.stacklyhotel bookingplatform.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; 2024 Stackly. All rights reserved. Designed in Salem, Tamil Nadu.</p>
+      <div class="foot-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+        <a href="404.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- JAVASCRIPT -->
+<!-- ============================================================ -->
+<script>
+/* ===== LOADER TRANSITION ===== */
+
+const logo = document.querySelector('a.nav-logo');
+if (logo) {
+  logo.addEventListener('click', (e) => {
+    e.preventDefault();
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.classList.add('show');
+      setTimeout(() => {
+        window.location.href = logo.getAttribute('href');
+      }, 1500);
+    } else {
+      window.location.href = logo.getAttribute('href');
+    }
+  });
+}
+
+/* ===== CURSOR ===== */
+const cd=document.getElementById('cur-dot'),cr=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function ac(){cd.style.left=mx+'px';cd.style.top=my+'px';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(ac)})();
+document.querySelectorAll('a,button,.feat-card,.property-card,.admin-card,.testi-card,.event-card,.blog-card,.svc-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cr.classList.add('big'));
+  el.addEventListener('mouseleave',()=>cr.classList.remove('big'));
+});
+
+/* ===== BACKGROUND VIDEO CAROUSEL & GSAP TEXT ANIMATIONS ===== */
+const slides = [
+  {
+    badge: "Curated Hotel & Resort Stays",
+    title: 'Hotel & Resort<br><span class="hl">Booking</span><br>Made Easy',
+    subtext: "Discover luxury hotels, beach resorts, nature retreats, and eco stays with verified amenities, flexible bookings, and guest-first support."
+  },
+  {
+    badge: "Luxury, Beach, And Nature Resorts",
+    title: 'Wake Up<br><span class="hl">Closer To Paradise</span><br>This Season',
+    subtext: "Compare ocean-view rooms, pool villas, spa resorts, and family-friendly hotels with transparent rates and helpful booking support."
+  },
+  {
+    badge: "Eco Retreats And Wellness Escapes",
+    title: 'Plan A Stay<br><span class="hl">That Feels Restful</span><br>Before You Arrive',
+    subtext: "Shortlist nature resorts, add transfers and activities, and keep booking details organized from search through check-in."
+  }
+];
+
+let currentSlideIdx = 0;
+const videoElements = document.querySelectorAll('.hero-video');
+const badgeTextElement = document.querySelector('#hero-badge .badge-text');
+const titleElement = document.querySelector('#hero-title');
+const subElement = document.querySelector('#hero-sub');
+
+function splitTextIntoWords(element, htmlContent) {
+  const lines = htmlContent.split(/<br\s*\/?>/i);
+  let finalHTML = '';
+  lines.forEach(line => {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = line;
+    let lineHTML = '<span class="char-line">';
+    tempDiv.childNodes.forEach(node => {
+      if (node.nodeType === 3) { // Text node
+        const words = node.textContent.split(/\s+/);
+        words.forEach(word => {
+          if (word) {
+            lineHTML += `<span class="char-word">${word}</span> `;
+          }
+        });
+      } else if (node.nodeType === 1) { // Element node
+        const words = node.textContent.split(/\s+/);
+        const className = node.className;
+        words.forEach(word => {
+          if (word) {
+            lineHTML += `<span class="${className} char-word">${word}</span> `;
+          }
+        });
+      }
+    });
+    lineHTML += '</span>';
+    finalHTML += lineHTML;
+  });
+  element.innerHTML = finalHTML;
+}
+
+function animateSlideText(index) {
+  if (typeof gsap === 'undefined') return;
+  const slide = slides[index];
+
+  if (badgeTextElement) badgeTextElement.textContent = slide.badge;
+  if (titleElement) splitTextIntoWords(titleElement, slide.title);
+  if (subElement) subElement.textContent = slide.subtext;
+
+  gsap.killTweensOf(".char-word");
+  gsap.killTweensOf("#hero-badge");
+  gsap.killTweensOf("#hero-sub");
+
+  gsap.set(".char-word", { translateY: "110%", opacity: 0 });
+  gsap.set("#hero-badge", { opacity: 0, y: -20 });
+  gsap.set("#hero-sub", { opacity: 0, y: 15 });
+
+  const tl = gsap.timeline();
+  tl.to("#hero-badge", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
+    .to(".char-word", { translateY: "0%", opacity: 1, duration: 0.9, stagger: 0.05, ease: "power3.out" }, "-=0.4")
+    .to("#hero-sub", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.6");
+}
+
+function nextSlide() {
+  if (typeof gsap === 'undefined') return;
+  const nextIdx = (currentSlideIdx + 1) % slides.length;
+
+  gsap.to(["#hero-badge", "#hero-sub", ".char-word"], {
+    opacity: 0,
+    y: (index, target) => {
+      if (target.id === 'hero-badge') return -15;
+      return 15;
+    },
+    duration: 0.5,
+    stagger: 0.02,
+    ease: "power2.in",
+    onComplete: () => {
+      if (videoElements.length > 1) {
+        videoElements[currentSlideIdx].classList.remove('active');
+        try { videoElements[currentSlideIdx].pause(); } catch(e){}
+      }
+      
+      currentSlideIdx = nextIdx;
+      
+      if (videoElements.length > 1) {
+        videoElements[currentSlideIdx].classList.add('active');
+        try {
+          videoElements[currentSlideIdx].currentTime = 0;
+          videoElements[currentSlideIdx].play();
+        } catch(e){}
+      }
+      
+      animateSlideText(currentSlideIdx);
+    }
+  });
+}
+
+/* ===== NAVBAR SCROLL ===== */
+const nb=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  nb.classList.toggle('scrolled',scrollY>80);
+  document.getElementById('scrolltop').classList.toggle('show',scrollY>400);
+});
+
+/* ===== MOBILE MENU ===== */
+document.getElementById('ham').addEventListener('click',()=>{
+  document.getElementById('mob-menu').classList.add('open');
+  document.body.classList.add('no-scroll');
+  document.documentElement.classList.add('no-scroll');
+});
+document.getElementById('mob-close').addEventListener('click',()=>{
+  document.getElementById('mob-menu').classList.remove('open');
+  document.body.classList.remove('no-scroll');
+  document.documentElement.classList.remove('no-scroll');
+});
+document.querySelectorAll('#mob-menu a').forEach(a=>a.addEventListener('click',()=>{
+  document.getElementById('mob-menu').classList.remove('open');
+  document.body.classList.remove('no-scroll');
+  document.documentElement.classList.remove('no-scroll');
+}));
+
+/* ===== SCROLL REVEAL ===== */
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>ro.observe(el));
+
+/* ===== COUNTER ANIMATION ===== */
+const co=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target,target=+el.dataset.target,inc=target/60;
+      let v=0;const t=setInterval(()=>{v+=inc;if(v>=target){el.textContent=target.toLocaleString();clearInterval(t)}else{el.textContent=Math.floor(v).toLocaleString()}},20);
+      co.unobserve(el);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.stat-block .num[data-target]').forEach(el=>co.observe(el));
+
+/* ===== COURSE TABS ===== */
+document.querySelectorAll('.ctab').forEach(t=>{
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.ctab').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+/* ===== FAQ ACCORDION ===== */
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',function(){
+    const item=this.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+
+/* ===== FORM FOCUS MICRO ===== */
+document.querySelectorAll('.form-group input,.form-group textarea,.form-group select').forEach(el=>{
+  el.addEventListener('focus',()=>el.parentElement.querySelector('label').style.color='var(--orange)');
+  el.addEventListener('blur',()=>el.parentElement.querySelector('label').style.color='');
+});
+
+/* ===== NAV ACTIVE ON SCROLL ===== */
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-menu>li>a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(scrollY>=s.offsetTop-120)cur=s.id});
+  navLinks.forEach(a=>{
+    const href = a.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      a.classList.remove('active');
+      if(href==='#'+cur)a.classList.add('active');
+    }
+  });
+});
+
+/* ===== INITIALIZE CAROUSEL & ANIMATIONS ===== */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    try {
+      videoElements[0].play();
+    } catch(e){}
+    
+    animateSlideText(0);
+
+    if (typeof gsap !== 'undefined') {
+      gsap.from(".hero-btns", { opacity: 0, scale: 0.95, duration: 0.8, delay: 0.6, ease: "back.out(1.5)" });
+      gsap.from(".hero-content .hero-stats > div", { opacity: 0, y: 20, duration: 0.8, delay: 0.8, stagger: 0.15, ease: "power2.out" });
+    }
+
+    setInterval(nextSlide, 7000);
+  }, 2200);
+});
+
+function validateSubscription() {
+  const emailInput = document.querySelector('.sub-form input');
+  const email = emailInput.value.trim();
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$/;
+  if (!regex.test(email)) {
+    emailInput.style.borderColor = 'red';
+    emailInput.style.boxShadow = '0 0 10px rgba(255, 0, 0, 0.3)';
+    alert('Please enter a valid email address ending with .com');
+  } else {
+    emailInput.style.borderColor = '';
+    emailInput.style.boxShadow = '';
+    location.href = '404.html';
+  }
+}
+
+function handleEmailInput() {
+  const emailInput = document.querySelector('.sub-form input');
+  emailInput.style.borderColor = '';
+  emailInput.style.boxShadow = '';
+}
+document.addEventListener("DOMContentLoaded", function () {
+
+    const tabs = document.querySelectorAll(".ctab");
+    const cards = document.querySelectorAll(".property-card");
+
+    tabs.forEach(tab => {
+
+        tab.addEventListener("click", function () {
+
+            // Active button
+            tabs.forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            const filter = this.dataset.filter;
+
+            cards.forEach(card => {
+
+                const category = card.dataset.category;
+
+                if (filter === "All" || category === filter) {
+                    card.classList.remove("hide");
+                } else {
+                    card.classList.add("hide");
+                }
+
+            });
+
+        });
+
+    });
+
+});
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
