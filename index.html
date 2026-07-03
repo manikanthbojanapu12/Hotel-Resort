@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stackly - Hotel & Resort Booking</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Raleway:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<!-- GSAP CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -122,57 +120,82 @@
 <!-- HERO -->
 <!-- ============================================================ -->
 <section id="hero">
-  <div class="hero-video-container">
-    <div class="video-overlay"></div>
-    <video class="hero-video active" src="videos/resort_hotel_beach_video.mp4" autoplay loop muted playsinline preload="auto"></video>
+  <div class="lux-hero-bg" data-depth="-0.018"></div>
+  <div class="lux-hero-gradient"></div>
+  <div class="lux-hero-particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
   </div>
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge rv" id="hero-badge"><span class="badge-pulse"></span><span class="badge-text">Curated Hotel & Resort Stays</span></div>
-        <h1 class="rv d1" id="hero-title">Hotel & Resort<br><span class="hl">Booking</span><br>Made Easy</h1>
-        <p class="hero-sub rv d2" id="hero-sub">Discover luxury hotels, beach resorts, nature retreats, and eco stays with verified amenities, flexible bookings, and guest-first support.</p>
-        <div class="hero-btns rv d3">
-          <a href="404.html" class="hbtn-main">Explore Stays</a>
-          <a href="404.html" class="hbtn-ghost"><span class="play-wrap">▶</span> Watch Resort Tour</a>
+  <div class="lux-cursor-glow" aria-hidden="true"></div>
+
+  <div class="lux-hero-shell">
+    <div class="lux-hero-copy" data-depth="0.012">
+      <div class="lux-badge lux-reveal" style="--delay:.08s">
+        <span class="lux-badge-dot"></span>
+        Luxury Resort
+      </div>
+      <div class="lux-divider lux-reveal" style="--delay:.16s"></div>
+      <h1 class="lux-title lux-reveal" style="--delay:.24s">
+        Private sanctuaries<br>
+        for stays that feel<br>
+        quietly extraordinary.
+      </h1>
+      <p class="lux-subtitle lux-reveal" style="--delay:.36s">Discover cinematic beach villas, wellness retreats, and city sanctuaries selected for design, privacy, service, and a sense of effortless calm.</p>
+
+      <div class="lux-actions lux-reveal" style="--delay:.48s">
+        <a href="404.html" class="lux-btn lux-btn-primary magnetic-btn">Reserve Your Escape <span>→</span></a>
+        <a href="404.html" class="lux-btn lux-btn-secondary magnetic-btn">View Collections <span>↗</span></a>
+      </div>
+
+      <div class="lux-ratings lux-reveal" style="--delay:.58s">
+        <div class="lux-avatars" aria-hidden="true">
+          <img src="downloaded_images/a1.webp" alt="">
+          <img src="downloaded_images/a2.webp" alt="">
+          <img src="downloaded_images/a3.webp" alt="">
         </div>
-        <div class="hero-stats rv d4">
-          <div>
-            <div class="hstat-num">180<em>+</em></div>
-            <div class="hstat-label">Hotels & Resorts</div>
-          </div>
-          <div>
-            <div class="hstat-num">95<em>K</em></div>
-            <div class="hstat-label">Happy Guests</div>
-          </div>
-          <div>
-            <div class="hstat-num">42<em>+</em></div>
-            <div class="hstat-label">Destinations</div>
-          </div>
+        <div>
+          <div class="lux-stars">★★★★★</div>
+          <p>Rated 4.9 by 18,000+ refined travelers</p>
         </div>
-        <form class="booking-search rv d4" action="404.html">
-          <label>
-            <span>Destination</span>
-            <input type="text" value="Goa Beach Resort">
-          </label>
-          <label>
-            <span>Check In</span>
-            <input type="date" value="2026-08-15">
-          </label>
-          <label>
-            <span>Check Out</span>
-            <input type="date" value="2026-08-18">
-          </label>
-          <label>
-            <span>Guests</span>
-            <select>
-              <option>2 Adults</option>
-              <option>Family of 4</option>
-              <option>Group Booking</option>
-            </select>
-          </label>
-          <button type="submit">Search Rooms</button>
-        </form>
+      </div>
+
+      <div class="lux-stats lux-reveal" style="--delay:.68s">
+        <div class="lux-stat"><strong data-count="500">0</strong><span>Rooms</span></div>
+        <div class="lux-stat"><strong data-count="25">0</strong><span>Locations</span></div>
+        <div class="lux-stat"><strong>5★</strong><span>Luxury</span></div>
+      </div>
+    </div>
+
+    <div class="lux-hero-visual" aria-label="Luxury hotel booking highlights">
+      <article class="lux-float-card lux-main-card tilt-card" data-depth="-0.026" style="--delay:.22s">
+        <img src="downloaded_images/resort-hero.webp" alt="Luxury resort with pool and tropical architecture">
+        <div class="lux-image-shade"></div>
+        <div class="lux-main-caption">
+          <span>Azure Palm Sanctuary</span>
+          <strong>Private Pool Villa</strong>
+        </div>
+      </article>
+
+      <article class="lux-float-card lux-booking-card tilt-card" data-depth="0.04" style="--delay:.42s">
+        <span class="lux-card-kicker">Next available</span>
+        <strong>Fri, 14 Aug</strong>
+        <div class="lux-booking-row"><span>Ocean Villa</span><b>$390</b></div>
+        <a href="404.html" class="lux-card-link magnetic-btn">Book Suite</a>
+      </article>
+
+     
+
+      <article class="lux-float-card lux-destination-card tilt-card" data-depth="-0.035" style="--delay:.68s">
+        <img src="downloaded_images/beach-resort.webp" alt="Beach resort destination">
+        <div>
+          <span>Featured destination</span>
+          <strong>Maldives Lagoon</strong>
+        </div>
+      </article>
+
+      <div class="lux-discount-badge tilt-card" data-depth="0.052" style="--delay:.82s">
+        <span>Save</span>
+        <strong>25%</strong>
+        <em>Private stays</em>
       </div>
     </div>
   </div>
@@ -556,121 +579,143 @@ const cd=document.getElementById('cur-dot'),cr=document.getElementById('cur-ring
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
 (function ac(){cd.style.left=mx+'px';cd.style.top=my+'px';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(ac)})();
-document.querySelectorAll('a,button,.feat-card,.property-card,.admin-card,.testi-card,.event-card,.blog-card,.svc-item').forEach(el=>{
+document.querySelectorAll('a,button,.feat-card,.property-card,.admin-card,.testi-card,.event-card,.blog-card,.svc-item,.lux-float-card,.lux-discount-badge,.lux-stat').forEach(el=>{
   el.addEventListener('mouseenter',()=>cr.classList.add('big'));
   el.addEventListener('mouseleave',()=>cr.classList.remove('big'));
 });
 
-/* ===== BACKGROUND VIDEO CAROUSEL & GSAP TEXT ANIMATIONS ===== */
-const slides = [
-  {
-    badge: "Curated Hotel & Resort Stays",
-    title: 'Hotel & Resort<br><span class="hl">Booking</span><br>Made Easy',
-    subtext: "Discover luxury hotels, beach resorts, nature retreats, and eco stays with verified amenities, flexible bookings, and guest-first support."
-  },
-  {
-    badge: "Luxury, Beach, And Nature Resorts",
-    title: 'Wake Up<br><span class="hl">Closer To Paradise</span><br>This Season',
-    subtext: "Compare ocean-view rooms, pool villas, spa resorts, and family-friendly hotels with transparent rates and helpful booking support."
-  },
-  {
-    badge: "Eco Retreats And Wellness Escapes",
-    title: 'Plan A Stay<br><span class="hl">That Feels Restful</span><br>Before You Arrive',
-    subtext: "Shortlist nature resorts, add transfers and activities, and keep booking details organized from search through check-in."
+/* ===== PREMIUM HERO INTERACTIONS ===== */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const luxHero = document.getElementById('hero');
+const luxGlow = document.querySelector('.lux-cursor-glow');
+const luxParallaxItems = document.querySelectorAll('#hero [data-depth]');
+const luxTiltCards = document.querySelectorAll('.tilt-card');
+const luxMagneticButtons = document.querySelectorAll('.magnetic-btn');
+const luxStats = document.querySelectorAll('.lux-stat strong[data-count]');
+let heroMouseX = 0;
+let heroMouseY = 0;
+let heroTargetX = 0;
+let heroTargetY = 0;
+let statsStarted = false;
+
+function animateLuxuryStats() {
+  if (statsStarted) return;
+  statsStarted = true;
+  if (prefersReducedMotion) {
+    luxStats.forEach(stat => {
+      stat.textContent = Number(stat.dataset.count || 0).toLocaleString() + '+';
+    });
+    return;
   }
-];
+  luxStats.forEach(stat => {
+    const target = Number(stat.dataset.count || 0);
+    const duration = 1300;
+    const start = performance.now();
+    const tick = now => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      stat.textContent = Math.round(target * eased).toLocaleString() + '+';
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+}
 
-let currentSlideIdx = 0;
-const videoElements = document.querySelectorAll('.hero-video');
-const badgeTextElement = document.querySelector('#hero-badge .badge-text');
-const titleElement = document.querySelector('#hero-title');
-const subElement = document.querySelector('#hero-sub');
+function luxuryHeroFrame() {
+  heroMouseX += (heroTargetX - heroMouseX) * 0.075;
+  heroMouseY += (heroTargetY - heroMouseY) * 0.075;
+  const scrollProgress = luxHero ? Math.min(window.scrollY / Math.max(luxHero.offsetHeight, 1), 1) : 0;
 
-function splitTextIntoWords(element, htmlContent) {
-  const lines = htmlContent.split(/<br\s*\/?>/i);
-  let finalHTML = '';
-  lines.forEach(line => {
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = line;
-    let lineHTML = '<span class="char-line">';
-    tempDiv.childNodes.forEach(node => {
-      if (node.nodeType === 3) { // Text node
-        const words = node.textContent.split(/\s+/);
-        words.forEach(word => {
-          if (word) {
-            lineHTML += `<span class="char-word">${word}</span> `;
-          }
-        });
-      } else if (node.nodeType === 1) { // Element node
-        const words = node.textContent.split(/\s+/);
-        const className = node.className;
-        words.forEach(word => {
-          if (word) {
-            lineHTML += `<span class="${className} char-word">${word}</span> `;
-          }
-        });
+  luxParallaxItems.forEach(item => {
+    const depth = Number(item.dataset.depth || 0);
+    const x = heroMouseX * depth * 42;
+    const y = heroMouseY * depth * 36 - scrollProgress * depth * 180;
+    item.style.setProperty('--parallax-x', `${x}px`);
+    item.style.setProperty('--parallax-y', `${y}px`);
+  });
+
+  if (luxGlow) {
+    luxGlow.style.transform = `translate3d(${heroMouseX * 50}vw, ${heroMouseY * 50}vh, 0) translate(-50%, -50%)`;
+  }
+
+  if (luxHero) {
+    luxHero.style.setProperty('--hero-scroll', scrollProgress.toFixed(3));
+    luxHero.style.setProperty('--hero-copy-scroll', `${scrollProgress * -46}px`);
+    luxHero.style.setProperty('--hero-visual-scroll', `${scrollProgress * -72}px`);
+    luxHero.style.setProperty('--hero-copy-fade', Math.max(0.86, 1 - scrollProgress * 0.32).toFixed(3));
+    luxHero.style.setProperty('--hero-visual-fade', Math.max(0.88, 1 - scrollProgress * 0.28).toFixed(3));
+  }
+
+  requestAnimationFrame(luxuryHeroFrame);
+}
+
+if (luxHero) {
+  window.addEventListener('load', () => luxHero.classList.add('lux-loaded'));
+
+  if (!prefersReducedMotion) {
+    luxHero.addEventListener('pointermove', event => {
+      const rect = luxHero.getBoundingClientRect();
+      heroTargetX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      heroTargetY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+      luxHero.style.setProperty('--cursor-x', `${event.clientX - rect.left}px`);
+      luxHero.style.setProperty('--cursor-y', `${event.clientY - rect.top}px`);
+    });
+    luxHero.addEventListener('pointerleave', () => {
+      heroTargetX = 0;
+      heroTargetY = 0;
+      luxTiltCards.forEach(card => {
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+      });
+    });
+
+    luxTiltCards.forEach(card => {
+      card.addEventListener('pointermove', event => {
+        const rect = card.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width - 0.5;
+        const py = (event.clientY - rect.top) / rect.height - 0.5;
+        card.style.setProperty('--tilt-x', `${py * -9}deg`);
+        card.style.setProperty('--tilt-y', `${px * 11}deg`);
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+      });
+    });
+
+    luxMagneticButtons.forEach(button => {
+      button.addEventListener('pointermove', event => {
+        const rect = button.getBoundingClientRect();
+        button.style.setProperty('--magnet-x', `${(event.clientX - rect.left - rect.width / 2) * 0.18}px`);
+        button.style.setProperty('--magnet-y', `${(event.clientY - rect.top - rect.height / 2) * 0.18}px`);
+      });
+      button.addEventListener('pointerleave', () => {
+        button.style.setProperty('--magnet-x', '0px');
+        button.style.setProperty('--magnet-y', '0px');
+      });
+      button.addEventListener('click', event => {
+        const ripple = document.createElement('span');
+        const rect = button.getBoundingClientRect();
+        ripple.className = 'lux-ripple';
+        ripple.style.left = `${event.clientX - rect.left}px`;
+        ripple.style.top = `${event.clientY - rect.top}px`;
+        button.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+      });
+    });
+
+    requestAnimationFrame(luxuryHeroFrame);
+  }
+
+  const statsObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateLuxuryStats();
+        statsObserver.disconnect();
       }
     });
-    lineHTML += '</span>';
-    finalHTML += lineHTML;
-  });
-  element.innerHTML = finalHTML;
-}
-
-function animateSlideText(index) {
-  if (typeof gsap === 'undefined') return;
-  const slide = slides[index];
-
-  if (badgeTextElement) badgeTextElement.textContent = slide.badge;
-  if (titleElement) splitTextIntoWords(titleElement, slide.title);
-  if (subElement) subElement.textContent = slide.subtext;
-
-  gsap.killTweensOf(".char-word");
-  gsap.killTweensOf("#hero-badge");
-  gsap.killTweensOf("#hero-sub");
-
-  gsap.set(".char-word", { translateY: "110%", opacity: 0 });
-  gsap.set("#hero-badge", { opacity: 0, y: -20 });
-  gsap.set("#hero-sub", { opacity: 0, y: 15 });
-
-  const tl = gsap.timeline();
-  tl.to("#hero-badge", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
-    .to(".char-word", { translateY: "0%", opacity: 1, duration: 0.9, stagger: 0.05, ease: "power3.out" }, "-=0.4")
-    .to("#hero-sub", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.6");
-}
-
-function nextSlide() {
-  if (typeof gsap === 'undefined') return;
-  const nextIdx = (currentSlideIdx + 1) % slides.length;
-
-  gsap.to(["#hero-badge", "#hero-sub", ".char-word"], {
-    opacity: 0,
-    y: (index, target) => {
-      if (target.id === 'hero-badge') return -15;
-      return 15;
-    },
-    duration: 0.5,
-    stagger: 0.02,
-    ease: "power2.in",
-    onComplete: () => {
-      if (videoElements.length > 1) {
-        videoElements[currentSlideIdx].classList.remove('active');
-        try { videoElements[currentSlideIdx].pause(); } catch(e){}
-      }
-      
-      currentSlideIdx = nextIdx;
-      
-      if (videoElements.length > 1) {
-        videoElements[currentSlideIdx].classList.add('active');
-        try {
-          videoElements[currentSlideIdx].currentTime = 0;
-          videoElements[currentSlideIdx].play();
-        } catch(e){}
-      }
-      
-      animateSlideText(currentSlideIdx);
-    }
-  });
+  }, { threshold: 0.45 });
+  statsObserver.observe(luxHero);
 }
 
 /* ===== NAVBAR SCROLL ===== */
@@ -752,24 +797,6 @@ window.addEventListener('scroll',()=>{
       if(href==='#'+cur)a.classList.add('active');
     }
   });
-});
-
-/* ===== INITIALIZE CAROUSEL & ANIMATIONS ===== */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    try {
-      videoElements[0].play();
-    } catch(e){}
-    
-    animateSlideText(0);
-
-    if (typeof gsap !== 'undefined') {
-      gsap.from(".hero-btns", { opacity: 0, scale: 0.95, duration: 0.8, delay: 0.6, ease: "back.out(1.5)" });
-      gsap.from(".hero-content .hero-stats > div", { opacity: 0, y: 20, duration: 0.8, delay: 0.8, stagger: 0.15, ease: "power2.out" });
-    }
-
-    setInterval(nextSlide, 7000);
-  }, 2200);
 });
 
 function validateSubscription() {
