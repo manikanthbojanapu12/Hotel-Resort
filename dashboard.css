@@ -72,6 +72,13 @@ body.dashboard-body *::after {
   text-decoration: none;
 }
 
+.dashboard-logo-img {
+  height: 58px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1.3) saturate(1.38) drop-shadow(0 0 16px rgba(248, 184, 14, 0.5));
+}
+
 .logo-icon-svg {
   width: 32px;
   height: 32px;
@@ -1385,10 +1392,10 @@ body.dashboard-body *::after {
 
 .mobile-header-logo img {
   display: block;
-  height: 38px;
+  height: 50px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(248, 184, 14, 0.25));
+  filter: brightness(1.3) saturate(1.38) drop-shadow(0 0 14px rgba(248, 184, 14, 0.48));
 }
 
 .btn-sidebar-toggle {
@@ -1786,7 +1793,7 @@ body.dashboard-body *::after {
   }
 
   .mobile-header-logo img {
-    height: 34px;
+    height: 44px;
   }
 
   .header-left h1 {
